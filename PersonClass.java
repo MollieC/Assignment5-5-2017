@@ -9,7 +9,8 @@ public class PersonClass {
 	private String nationality;
 	private String visaInfo;
 	//private String status; 
-//	private ArrayList<BoatObject> boat = new ArrayList<BoatObject>();//to assign the boat to a person
+	private ArrayList<BoatClass> boat = new ArrayList<BoatClass>();//to assign the boat to a person
+	private ArrayList<RoleClass> role = new ArrayList<RoleClass>();
 	
 ////////////////////Constructors////////////////////////
 	PersonClass(String firstName, String dob, String nationality, String visaInfo){
@@ -50,18 +51,22 @@ public class PersonClass {
 	//public void setStatus(String newStatus)
 		//{this.status = newStatus;}
 	
-	//public void ownBoat(BoatObject b) {
-	//	boat.add(b);
-	//}
+	public void ownBoat(BoatClass b) {
+		boat.add(b);
+	}
 
-	//public ArrayList<BoatObject> getBoat() {
-		//return boat;
-	//}
+	public ArrayList<BoatClass> getBoat() {
+		return boat;
+	}
 
-	//public void setAnimals(ArrayList<BoatObject> boats) {
-	//	this.boat = boat;
+	public void setBoat(ArrayList<BoatClass> boats) {
+		this.boat = boat;
+	}
+	
+	public void addRole(RoleClass r) {
+		role.add(r);
+	}
 }
-//}
 
 //I created a person object, with attributes, constructors (to be used when I call the instance of the object in another class)
 //and getters and setters as a means of encapsulation (as I've made the attributes private, they can only be accessed
@@ -71,3 +76,6 @@ public class PersonClass {
 //The array attribute was also added to help with assigning the boats to people. Because of this there is an ownBoat method
 //included in this class which is called upon later. There are also getters and setters because of the fact that
 //the ownership of the boat is a private attribute.
+//In terms of the 'role' section- I was trying to assign roles to individuals, but I couldn't quite figure out how to 
+//so I did it the only way I kind of knew how, but I know that I've created a whole different class and object, and thats
+//definitely not how its meant to be done.
