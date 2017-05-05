@@ -1,0 +1,199 @@
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+
+public class Main {
+
+static ArrayList<PersonClass> person = new ArrayList<PersonClass>();
+static ArrayList<BoatClass> boat = new ArrayList<BoatClass>();
+static ArrayList<MarinaClass> marina = new ArrayList<MarinaClass>();
+static ArrayList<RoleClass> role = new ArrayList<RoleClass>();
+	
+	public static void main(String[] args) {
+	RoleClass r = new RoleClass("Crew");
+	RoleClass r1 = new RoleClass("Captain");
+	RoleClass r2 = new RoleClass("Owner");
+	
+	role.add(r);
+	role.add(r1);
+	role.add(r2);
+	
+	assignBoat("David Green", "Santa Maria");
+
+	}
+
+/////////////////////STAGE 4 Assigning Boat to Person////////////////////////
+	
+	public static void assignBoat(String personFirstName, String boatName){
+		for(PersonClass p : person){
+			if(p.getFirstName().equals(personFirstName)){
+				for(BoatClass b : boat){
+					if(b.getName().equals(boatName)){
+					p.ownBoat(b);
+					System.out.println(p.getFirstName() + "is associated with" + p.getBoat());
+		}
+	}
+}
+}
+}
+
+//Here I have created the objects themselves and gave them attributes. Following this, I created  a method that 
+//allows people to be assigned to a boat. For every person in the ArrayList, if the name passed through the parameters
+//matches that of a name in the ArrayList (and the same for the boat), then that person will be assigned to the boat
+
+	
+/////////////////////STAGE 5 Assigning Roles to People////////////////////////
+	public static void assignRole(String personFirstName, String personRole){
+		for(PersonClass p : person){
+			if(p.getFirstName().equals(personFirstName)){
+				for(RoleClass r : role){
+					if(r.getRole.equals(personRole)){
+					p.addRole(r);
+		}
+	}
+}
+}
+}
+	
+//////////////////////////STAGE 5 Reading the File/////////////////////
+public static String readFile(){
+	BufferedReader br = null;
+	String fileName = "stage_5_input.txt";
+
+
+			try {
+				br = new BufferedReader(new FileReader(fileName));
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+
+
+			String allData = null;
+			try {
+				StringBuilder sb = new StringBuilder();
+				String line = br.readLine();
+				while (line != null) {
+					sb.append(line);
+					sb.append(System.lineSeparator()); 
+					line = br.readLine();
+				}
+				allData = sb.toString();
+
+			} catch (IOException e)
+			{
+				e.printStackTrace();
+
+			} finally 
+
+			{
+				try {
+					br.close(); 
+				} catch (IOException e) 
+				{
+					e.printStackTrace();
+				}
+			}
+			return allData;
+			}		
+
+//I created a method that would allow me to read the file. I used the buffered reader to look for information, transfer it
+//and save it to a chunk of memory. Then I initiated the file I want to read in. Because of the try and catch for the 
+//FileNotFound exception (which throws if the system can't find the file), I had to make the buffer null, and then create 
+//a new instance and initialize it inside the curly braces. The FileReader inside the parenthesis is reading the file that 
+//was assigned outside of the try and catch.
+//Again, because of the input-output exception 'allData' had to be declared as null and later initialized.
+
+///////////////////////////Parsing the File////////////////////////
+public static void parseFile(String str){
+String[] FirstSplit = str.split("\n"); 
+String[] marinaArray = FirstSplit[0].split("Marinas");
+String[] boatArray = FirstSplit[1].split("Boats");
+String[] personArray = FirstSplit[2].split("People");
+
+////////////////////////////Populating the ArrayLists//////////////////
+//Marinas
+String[] MonacoYachtClub = marinaArray[0].split("|");
+MarinaClass MYC = new MarinaClass(MonacoYachtClub[0], MonacoYachtClub[1], Integer.parseInt(MonacoYachtClub[2]));
+marina.add(MYC);
+
+String[] VeniceMarinas = marinaArray[0].split("|");
+MarinaClass VM = new MarinaClass(VeniceMarinas[0], VeniceMarinas[1], Integer.parseInt(VeniceMarinas[2]));
+marina.add(VM);
+
+//Boats
+String[] SantaMaria = boatArray[1].split("|");
+BoatClass SM = new BoatClass(SantaMaria[0], SantaMaria[1], Double.parseDouble(SantaMaria[2]));
+boat.add(SM);
+
+String[] MarysDream = boatArray[1].split("|");
+BoatClass MD = new BoatClass(MarysDream[0], MarysDream[1], Double.parseDouble(MarysDream[2]));
+boat.add(MD);
+
+String[] BoatyMcBoatface = boatArray[1].split("|");
+BoatClass BM = new BoatClass(BoatyMcBoatface[0], BoatyMcBoatface[1], Double.parseDouble(BoatyMcBoatface[2]));
+boat.add(BM);
+
+String[] Aquaholic = boatArray[1].split("|");
+BoatClass A = new BoatClass(Aquaholic[0], Aquaholic[1], Double.parseDouble(Aquaholic[2]));
+boat.add(A);
+
+//People
+String[] DavidGreen = personArray[2].split("|");
+PersonClass DG = new PersonClass(DavidGreen[0], DavidGreen[1], DavidGreen[2], DavidGreen[3]);
+person.add(DG);
+
+String[] MaryJones = personArray[2].split("|");
+PersonClass MJ = new PersonClass(MaryJones[0], MaryJones[1], MaryJones[2], MaryJones[3]);
+person.add(MJ);
+
+String[] MikeWozniak = personArray[2].split("|");
+PersonClass MW = new PersonClass(MikeWozniak[0], MikeWozniak[1], MikeWozniak[2], MikeWozniak[3]);
+person.add(MW);
+
+String[] BillKnightley = personArray[2].split("|");
+PersonClass BK = new PersonClass(BillKnightley[0], BillKnightley[1], BillKnightley[2], BillKnightley[3]);
+person.add(BK);
+
+String[] BrianJohnson = personArray[2].split("|");
+PersonClass BJ = new PersonClass(BrianJohnson[0], BrianJohnson[1], BrianJohnson[2], BrianJohnson[3]);
+person.add(BJ);
+
+String[] LinusTorvalds = personArray[2].split("|");
+PersonClass LT = new PersonClass(LinusTorvalds[0], LinusTorvalds[1], LinusTorvalds[2], LinusTorvalds[3]);
+person.add(LT);
+
+String[] PeterJackson = personArray[2].split("|");
+PersonClass PJ = new PersonClass(PeterJackson[0], PeterJackson[1], PeterJackson[2], PeterJackson[3]);
+person.add(PJ);
+
+String[] Adele = personArray[2].split("|");
+PersonClass Ad = new PersonClass(Adele[0], Adele[1], Adele[2], Adele[3]);
+person.add(Ad);
+
+String[] EmmaWatson = personArray[2].split("|");
+PersonClass EW = new PersonClass(EmmaWatson[0], EmmaWatson[1], EmmaWatson[2], EmmaWatson[3]);
+person.add(EW);
+
+
+}
+//Sorry, I know this is super messy, but its how I understand where everything is. In this part, I have started to parse the
+//data in the text file. What I'm trying to do is first split the data into 3 separate lists, marinas, boats and people
+//although the only way I could see that working would be to split them by an empty new line token. I then tried
+//to split the three lists further into separate individual items (by using the '|' token) and put them into new ArrayLists, 
+//so that I can use the data for later methods. 
+//Because the final attribute of the marina is an int, I had to use the parseInt function to be get the program
+//to read it in as a string.
+//Also I tried to output stuff onto the console but it just wouldn't work with me.
+
+public static void printInfo(){
+	for(MarinaClass m : marina){
+		System.out.println(m.getAddress()); //this was just a test to see if I could print out the details. 
+	}
+}
+
+public static void relationshipBoat(){
+	
+}
+}
