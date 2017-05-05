@@ -1,0 +1,46 @@
+public class BoatClass implements Vehicle {
+	
+////////////////////Attributes////////////////////////
+	private String name;
+	private String originCountry;
+	private double size;
+	
+////////////////////Constructors////////////////////////
+	BoatClass(String name, String originCountry, double size){
+		this.name = name;
+		this.originCountry = originCountry;
+		this.size = size;}
+
+////////////////////Methods////////////////////////
+	public String getName()
+		{return this.name;}
+	public void setName(String newName)
+		{this.name = newName;}
+	
+	public String getOriginCountry()
+		{return this.originCountry;}
+	public void setOriginCountry(String newOriginCountry)
+		{this.originCountry = newOriginCountry;}
+
+	public double getSize()
+		{return this.size;}
+	public void setSize(double newSize)
+		{this.size = newSize;}
+		
+	public int getSpeed() {
+		return 0;
+	
+	}
+
+	
+	public void accelerate() {
+		
+	}
+
+
+	public void deccelerate() {
+		
+	}
+}
+//I created the boat class with the assigned attributes, but also implemented the Vehicle interface, whereby the
+//methods in that interface have been inherited by the object and added to the class.
